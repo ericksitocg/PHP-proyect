@@ -173,8 +173,13 @@ array_push($arreglo_visitantes,9,23);
 $arreglo_empleados = ["VIP"=>"Homero","Normal"=>"Sasha",2=>"eo"];//Asociativos (actua como diccionario)
 $arreglo_empleados["Emergencia"] ="Medico";
 
-//Recorrer un arreglo
+//Recorrer un arreglo indexado
 foreach ($arreglo_visitantes as $i) {//($arreglo_visitantes as $clave => $valor)
+    //echo $i . "<br>";
+}
+
+//Recorrer un arreglo asociativo (diccionario)
+foreach ($arreglo_empleados as $clave => $valor){
     //echo $i . "<br>";
 }
 
