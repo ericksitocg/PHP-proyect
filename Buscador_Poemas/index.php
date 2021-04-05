@@ -12,11 +12,19 @@
 
 body{
     font: oblique 120% cursive;
-    /*//TODO FONDO DE IMAGEN DEL ESPACIO img/espacio.jpg*/
+    background-image: url("img/espacio.jpg");
     }
 
 button{
 	background-color: violet;
+}
+
+h1{
+    color: #ffffff;
+}
+
+label{
+    color: #ffffff;
 }
 
 </style>
