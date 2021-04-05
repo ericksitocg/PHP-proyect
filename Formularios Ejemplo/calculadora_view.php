@@ -9,7 +9,7 @@
 
 <p>&nbsp;</p>
 <form name="form1" method="post" action="calculadora.php">
-  <p>
+  <p> 
     <label for="num1"></label>
       <input type="text" name="num1" id="num_1">
     <label for="num2"></label>
