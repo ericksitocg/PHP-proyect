@@ -12,10 +12,10 @@
 
 body{
     font: oblique 120% cursive;
-    background-image: url("img/espacio.jpg");
+    background-color: #b0f2c2;
     }
 
-button{
+button,a{
 	background-color: violet;
 }
 
@@ -53,7 +53,14 @@ dinamicamente los elementos se usa PHP*/
             <div class="col-sm-10">
                 <input type="text" class="form-control form-control-lg" id="autor" name="autor" placeholder="Nombre o apellido del autor">
             </div>
+        </div>
+        <div class="row">
             <button type="submit" name="buscar">Buscar poemas</button>
+                <button type="button" name="agregar">
+                    <a href="create.php">
+                        Agregar poema
+                    </a>
+                </button>
         </div>
     </form>
 </div>
