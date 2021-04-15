@@ -21,6 +21,17 @@ button{
 
 h1{
     color: #ffffff;
+    text-align:center;
+}
+
+p{
+    text-align:center;
+    color: green;
+}
+
+img{
+    display:block;
+    margin:auto;
 }
 
 label{
@@ -86,7 +97,7 @@ if (!$conn) {
             die();
         }
         else{
-            echo "No se pudo registrar el poema";
+            echo "<p>No se pudo registrar el poema</p>";
         }
     }
 

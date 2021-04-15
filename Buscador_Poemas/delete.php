@@ -21,10 +21,21 @@ button{
 
 h1{
     color: #ffffff;
+    text-align:center;
+}
+
+p{
+    text-align:center;
+    color: green;
 }
 
 label{
     color: #ffffff;
+}
+
+img{
+    display:block;
+    margin:auto;
 }
 
 </style>
@@ -49,7 +60,7 @@ if (!$conn) {
     <form action="" method="post">
 
         <div class="row">
-            <label for="colFormLabelLg" class="col-sm-10 col-form-label col-form-label-lg">Numero del poema</label>
+            <label for="colFormLabelLg" class="col-sm-10 col-form-label col-form-label-lg"># del poema</label>
             <input type="text" class="form-control form-control-lg" id="titulo" name="del_id">
         </div>
         <div class="row">
@@ -63,29 +74,37 @@ if (!$conn) {
 
         //Primer query de consulta para obtener datos del poema por ID
         $id_poema = $_POST["del_id"];
-        $query_sel = "SELECT * FROM poema WHERE ID = '$id_poema';";
-        $result_select = mysqli_query($conn,$query_sel);
-    
-        if (mysqli_num_rows($result_select) > 0) {
-            while($row = mysqli_fetch_assoc($result_select)) {
 
-                $autor = $row["autor"];
-                $titulo = $row["titulo"];
+        if($id_poema != ""){
 
-                //Segundo query de accion para eliminar el poema por ID
-                $query_del = "DELETE FROM poema WHERE ID = '$id_poema';";
-                $result = mysqli_query($conn,$query_del);
-                $row_affected = mysqli_affected_rows($conn);
-
-                if($row_affected>0){
-                    echo "Se elimino el poema numero $id_poema: '\t $titulo \t' de $autor<br>";
-                }
-                else{
-                    echo "No existen poemas con el titulo $titulo";
-                }
+            $query_sel = "SELECT * FROM poema WHERE ID = '$id_poema';";
+            $result_select = mysqli_query($conn,$query_sel);
         
+            if (mysqli_num_rows($result_select) > 0) {
+                while($row = mysqli_fetch_assoc($result_select)) {
+
+                    $autor = $row["autor"];
+                    $titulo = $row["titulo"];
+
+                    //Segundo query de accion para eliminar el poema por ID
+                    $query_del = "DELETE FROM poema WHERE ID = '$id_poema';";
+                    $result = mysqli_query($conn,$query_del);
+                    $row_affected = mysqli_affected_rows($conn);
+
+                    if($row_affected>0){
+                        echo "<p>Se elimino el poema numero $id_poema: '\t $titulo \t' de $autor</p><br>";
+                    }
+                    else{
+                        echo "<p>No existen poemas con el titulo $titulo</p>";
+                    }
+            
+                }
             }
         }
+        else{
+            echo "<p>Ingrese el # del poema a eliminar, puede obtener el # en el buscador</p>";
+        }
+    
     }
 
 ?>

@@ -15,20 +15,33 @@ body{
     background-color: #b0f2c2;
     }
 
-button,a{
+button{
 	background-color: violet;
+}
+
+a{
+    font: oblique 100% cursive;
+	background-color: violet;
+
 }
 
 h1{
     color: #ffffff;
+    text-align:center;
+}
+
+p{
+    text-align:center;
+    color: green;
 }
 
 label{
     color: #ffffff;
 }
 
-img {
-    align-content: center;
+img{
+    display:block;
+    margin:auto;
 }
 
 </style>
@@ -64,11 +77,11 @@ dinamicamente los elementos se usa PHP*/
         </div>
     </form>
 
-    <form action="" method="post">
-        <button type="submit" name="agregar">Agregar poema</button>
-        <button type="submit" name="eliminar">Eliminar poemas por titulo</button>
-        <button type="submit" name="actualizar">Modificar un poema</button>
-    </form>
+    <div class='d-grid gap-2 d-md-block'>
+        <a href='create.php' class='btn btn-primary'>Ingresar un poema</a>
+        <a href='update.php' class='btn btn-primary'>Actualizar un poema</a>
+        <a href='delete.php' class='btn btn-danger'>Borrar un poema</a>
+    </div>
 
 </div>
 
@@ -80,59 +93,50 @@ dinamicamente los elementos se usa PHP*/
 
         $busq_autor = $_GET["autor"];
 
-        $query_by_autor = "SELECT * FROM POEMA WHERE AUTOR LIKE '%$busq_autor%';";
+        if($busq_autor != ""){
 
-        $result = mysqli_query($conn,$query_by_autor);
+            $query_by_autor = "SELECT * FROM POEMA WHERE AUTOR LIKE '%$busq_autor%';";
 
-        $id = 1;
-        if (mysqli_num_rows($result) > 0) {//Se recorren y crean los items para cada poema
-            while($row = mysqli_fetch_assoc($result)) {
-                $id_poema = $row["ID"];  //Columnas de la tabla
-                $autor = $row["autor"];
-                $titulo = $row["titulo"];
-                $contenido = $row["contenido"];
+            $result = mysqli_query($conn,$query_by_autor);
 
-                echo "
-                <div class='accordion-item'>
-                    <h2 class='accordion-header' id='heading$id'>
-                        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#collapse$id' aria-expanded='false' aria-controls='collapse$id'>
-                            Poema # $id_poema: '\t$titulo\t' de $autor
-                        </button>
-                    </h2>
-                    <div id='collapse$id' class='accordion-collapse collapse' aria-labelledby='heading$id' data-bs-parent='#accordionExample'>
-                        <div class='accordion-body'>
-                            $contenido
+            $id = 1;
+            if (mysqli_num_rows($result) > 0) {//Se recorren y crean los items para cada poema
+                while($row = mysqli_fetch_assoc($result)) {
+                    $id_poema = $row["ID"];  //Columnas de la tabla
+                    $autor = $row["autor"];
+                    $titulo = $row["titulo"];
+                    $contenido = $row["contenido"];
+
+                    echo "
+                    <div class='accordion-item'>
+                        <h2 class='accordion-header' id='heading$id'>
+                            <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#collapse$id' aria-expanded='false' aria-controls='collapse$id'>
+                                Poema # $id_poema: '\t$titulo\t' de $autor
+                            </button>
+                        </h2>
+                        <div id='collapse$id' class='accordion-collapse collapse' aria-labelledby='heading$id' data-bs-parent='#accordionExample'>
+                            <div class='accordion-body'>
+                                $contenido<br>
+                                <a href='read.php?read_id=$id_poema'  class='btn btn-primary' >Presentar</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    ";
+                    $id+=1;
+                }
+            }
+            else{
+                echo "
+                <p> No se encontraron poemas del autor: $busq_autor </p>
                 ";
-                $id+=1;
             }
         }
         else{
-            echo "
-            <h1> No se encontraron poemas del autor: $busq_autor </h1>
-            ";
+            echo "<p>Ingrese el nombre o apellido del autor para presentar sus poemas</p>";
         }
+
     }
 
-    if(isset($_POST["agregar"])){//Evento de boton
-        //TODO CORREGIR REDIRECCIONAMIENTO!!!
-        header("Location: create.php");
-        die();
-    }
-                
-    if(isset($_POST["eliminar"])){//Evento de boton
-        //TODO CORREGIR REDIRECCIONAMIENTO!!!
-        header("Location: delete.php");
-        die();
-    }
-
-    if(isset($_POST["actualizar"])){//Evento de boton
-        //TODO CORREGIR REDIRECCIONAMIENTO!!!
-        header("Location: update.php");
-        die();
-    }
 
     ?>
 
