@@ -27,6 +27,10 @@ label{
     color: #ffffff;
 }
 
+img {
+    align-content: center;
+}
+
 </style>
 
 <body>
@@ -45,8 +49,9 @@ if (!$conn) {
 dinamicamente los elementos se usa PHP*/
 
 ?>
-
 <div class="container">
+<a href="index.php"><img src="img/cat_potato.jpg" width="150" height="125" alt="Pagina princial"></a>
+<h1>Buscar un poema</h1>
     <form action="" method="get">
         <div class="row">
             <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Autor</label>
@@ -56,11 +61,8 @@ dinamicamente los elementos se usa PHP*/
         </div>
         <div class="row">
             <button type="submit" name="buscar">Buscar poemas</button>
-                <button type="button" name="agregar">
-                    <a href="create.php">
-                        Agregar poema
-                    </a>
-                </button>
+            <button type="submit" name="agregar">Agregar poema</button>
+            <button type="submit" name="eliminar">Eliminar poema</button>
         </div>
     </form>
 </div>
@@ -106,6 +108,19 @@ dinamicamente los elementos se usa PHP*/
             <h1> No se encontraron poemas del autor: $busq_autor </h1>
             ";
         }
+    }
+
+    if(isset($_GET["agregar"])){//Evento de boton
+        //TODO CORREGIR REDIRECCIONAMIENTO!!!
+        header("Location: create.php");
+        die();
+    }
+                
+
+    if(isset($_GET["eliminar"])){//Evento de boton
+        //TODO CORREGIR REDIRECCIONAMIENTO!!!
+        header("Location: delete.php");
+        die();
     }
 
     ?>

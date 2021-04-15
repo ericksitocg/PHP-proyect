@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <title>Agrega tu poema</title>
+    <title>Borrar un poema</title>
 </head>
 <style>
 
@@ -45,47 +45,35 @@ if (!$conn) {
 
 <div class="container">
 <a href="index.php"><img src="img/cat_potato.jpg" width="150" height="125" alt="Pagina princial"></a>
-<h1>Crear un poema</h1>
-
+<h1>Eliminar un poema</h1>
     <form action="" method="post">
-        <div class="row">
-            <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Autor</label>
-            <input type="text" class="form-control form-control-lg" id="autor" name="add_autor">
-        </div>
+
         <div class="row">
             <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Titulo</label>
-            <input type="text" class="form-control form-control-lg" id="titulo" name="add_titulo">
+            <input type="text" class="form-control form-control-lg" id="titulo" name="del_titulo">
         </div>
         <div class="row">
-            <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Contenido</label>
-            <input type="text" class="form-control form-control-lg" id="texto" name="add_contenido">
-        </div>
-        <div class="row">
-            <button type="submit" name="add_poema">Agregar poema</button>
+            <button type="submit" name="del_poema">Borrar poema</button>
         </div>
     </form>
 </div>
 
 <?php
-    if(isset($_POST["add_poema"])){//Evento de boton AGREGAR
+    if(isset($_POST["del_poema"])){//Evento de boton AGREGAR
 
-        $autor = $_POST["add_autor"];
-        $titulo = $_POST["add_titulo"];
-        $contenido = $_POST["add_contenido"];
+        $titulo = $_POST["del_titulo"];
 
-        $query_add = "INSERT INTO poema (autor, titulo, contenido)
-        VALUES ('$autor', '$titulo', '$contenido');";
+        $query_del = "DELETE FROM poema WHERE titulo = '$titulo';";
+ 
+        $result = mysqli_query($conn,$query_del);
 
-        $result = mysqli_query($conn,$query_add);
+        $row_affected = mysqli_affected_rows($conn);//No se puede usar num_rows porque la consulta no devuelve nada
 
-        if(!$result){
-            echo "No se pudo agregar el poema";
+        if($row_affected>0){
+            echo "Se eliminaron $row_affected poemas con el titulo $titulo";
         }
         else{
-        //TODO CORREGIR REDIRECCIONAMIENTO!!!
-        header("Location: index.php");
-        die();
-            
+            echo "No existen poemas con el titulo $titulo";
         }
     }
 
