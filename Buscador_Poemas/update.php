@@ -67,6 +67,7 @@ if (!$conn) {
         <div class="row">
             <button type="submit" name="upd_buscar">Presentar poema</button>
         </div>
+        <a href='index.php' class='btn btn-primary'>Regresar al inicio</a>
     </form>
 </div>
 
