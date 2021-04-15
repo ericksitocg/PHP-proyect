@@ -73,19 +73,20 @@ if (!$conn) {
         $titulo = $_POST["add_titulo"];
         $contenido = $_POST["add_contenido"];
 
-        $query_add = "INSERT INTO poema (autor, titulo, contenido)
-        VALUES ('$autor', '$titulo', '$contenido');";
+        $query_add = "INSERT INTO poema (autor, titulo, contenido) VALUES ('$autor', '$titulo', '$contenido');";
 
         $result = mysqli_query($conn,$query_add);
 
-        if(!$result){
-            echo "No se pudo agregar el poema";
+        $row_affected = mysqli_affected_rows($conn);
+
+        if($row_affected>0){
+            echo "Se registro el poema correctamente";        
+            //TODO CORREGIR REDIRECCIONAMIENTO!!!
+            header("Location: index.php");
+            die();
         }
         else{
-        //TODO CORREGIR REDIRECCIONAMIENTO!!!
-        header("Location: index.php");
-        die();
-            
+            echo "No se pudo registrar el poema";
         }
     }
 

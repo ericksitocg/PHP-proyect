@@ -1,3 +1,0 @@
-use poemas;
-LOAD DATA LOCAL INFILE 'C:\\wamp64\\www\\php_proyect\\datasets\\poemas.csv' INTO TABLE poema FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES ' IGNORE 1 ROWS;
-//https://phoenixnap.com/kb/import-csv-file-into-mysql

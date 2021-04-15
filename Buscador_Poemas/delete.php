@@ -49,8 +49,8 @@ if (!$conn) {
     <form action="" method="post">
 
         <div class="row">
-            <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Titulo</label>
-            <input type="text" class="form-control form-control-lg" id="titulo" name="del_titulo">
+            <label for="colFormLabelLg" class="col-sm-10 col-form-label col-form-label-lg">Numero del poema</label>
+            <input type="text" class="form-control form-control-lg" id="titulo" name="del_id">
         </div>
         <div class="row">
             <button type="submit" name="del_poema">Borrar poema</button>
@@ -59,21 +59,30 @@ if (!$conn) {
 </div>
 
 <?php
-    if(isset($_POST["del_poema"])){//Evento de boton AGREGAR
+    if(isset($_POST["del_poema"])){//Evento de boton BORRAR
 
-        $titulo = $_POST["del_titulo"];
+        $id_poema = $_POST["del_id"];
+        $query_sel = "SELECT * FROM poema WHERE ID = '$id_poema';";
+        $result_select = mysqli_query($conn,$query_sel);
+    
+        if (mysqli_num_rows($result_select) > 0) {
+            while($row = mysqli_fetch_assoc($result_select)) {
 
-        $query_del = "DELETE FROM poema WHERE titulo = '$titulo';";
- 
-        $result = mysqli_query($conn,$query_del);
+                $autor = $row["autor"];
+                $titulo = $row["titulo"];
 
-        $row_affected = mysqli_affected_rows($conn);//No se puede usar num_rows porque la consulta no devuelve nada
+                $query_del = "DELETE FROM poema WHERE ID = '$id_poema';";//Borro usando el id
+                $result = mysqli_query($conn,$query_del);
+                $row_affected = mysqli_affected_rows($conn);
 
-        if($row_affected>0){
-            echo "Se eliminaron $row_affected poemas con el titulo $titulo";
-        }
-        else{
-            echo "No existen poemas con el titulo $titulo";
+                if($row_affected>0){
+                    echo "Se elimino el poema numero $id_poema: '\t $titulo \t' de $autor<br>";
+                }
+                else{
+                    echo "No existen poemas con el titulo $titulo";
+                }
+        
+            }
         }
     }
 

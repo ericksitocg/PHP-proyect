@@ -51,20 +51,25 @@ dinamicamente los elementos se usa PHP*/
 ?>
 <div class="container">
 <a href="index.php"><img src="img/cat_potato.jpg" width="150" height="125" alt="Pagina princial"></a>
-<h1>Buscar un poema</h1>
+<h1>Busca un poema</h1>
     <form action="" method="get">
         <div class="row">
-            <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Autor</label>
-            <div class="col-sm-10">
+            <label for="colFormLabelLg" class="col-sm-1 col-form-label col-form-label-lg">Autor</label>
+            <div class="col-sm-11">
                 <input type="text" class="form-control form-control-lg" id="autor" name="autor" placeholder="Nombre o apellido del autor">
             </div>
         </div>
         <div class="row">
-            <button type="submit" name="buscar">Buscar poemas</button>
-            <button type="submit" name="agregar">Agregar poema</button>
-            <button type="submit" name="eliminar">Eliminar poema</button>
+            <button type="submit" name="buscar">Buscar poemas por autor</button>
         </div>
     </form>
+
+    <form action="" method="post">
+        <button type="submit" name="agregar">Agregar poema</button>
+        <button type="submit" name="eliminar">Eliminar poemas por titulo</button>
+        <button type="submit" name="actualizar">Modificar un poema</button>
+    </form>
+
 </div>
 
 <div class="container">
@@ -81,7 +86,8 @@ dinamicamente los elementos se usa PHP*/
 
         $id = 1;
         if (mysqli_num_rows($result) > 0) {//Se recorren y crean los items para cada poema
-            while($row = mysqli_fetch_assoc($result)) {    
+            while($row = mysqli_fetch_assoc($result)) {
+                $id_poema = $row["ID"];  //Columnas de la tabla
                 $autor = $row["autor"];
                 $titulo = $row["titulo"];
                 $contenido = $row["contenido"];
@@ -90,7 +96,7 @@ dinamicamente los elementos se usa PHP*/
                 <div class='accordion-item'>
                     <h2 class='accordion-header' id='heading$id'>
                         <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#collapse$id' aria-expanded='false' aria-controls='collapse$id'>
-                            $titulo - $autor
+                            Poema # $id_poema: '\t$titulo\t' de $autor
                         </button>
                     </h2>
                     <div id='collapse$id' class='accordion-collapse collapse' aria-labelledby='heading$id' data-bs-parent='#accordionExample'>
@@ -110,16 +116,21 @@ dinamicamente los elementos se usa PHP*/
         }
     }
 
-    if(isset($_GET["agregar"])){//Evento de boton
+    if(isset($_POST["agregar"])){//Evento de boton
         //TODO CORREGIR REDIRECCIONAMIENTO!!!
         header("Location: create.php");
         die();
     }
                 
-
-    if(isset($_GET["eliminar"])){//Evento de boton
+    if(isset($_POST["eliminar"])){//Evento de boton
         //TODO CORREGIR REDIRECCIONAMIENTO!!!
         header("Location: delete.php");
+        die();
+    }
+
+    if(isset($_POST["actualizar"])){//Evento de boton
+        //TODO CORREGIR REDIRECCIONAMIENTO!!!
+        header("Location: update.php");
         die();
     }
 
