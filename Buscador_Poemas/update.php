@@ -57,71 +57,54 @@ if (!$conn) {
 ?>
 
 <div class="container">
-<a href="index.php"><img src="img/cat_potato.jpg" width="150" height="125" alt="Pagina princial"></a>
-<h1>Actualizar un poema</h1>
-    <form action="" method="get">
-        <div class="row">
-            <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg"># del poema</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control form-control-lg" id="id" name="upd_id">
-            </div>
-        </div>
-        <div class="row">
-            <button type="submit" name="upd_buscar" class='btn btn-primary'>Presentar poema</button>
-        </div>
-        <a href='index.php' class='btn btn-primary'>Regresar al inicio</a>
-    </form>
-</div>
+<a href="index.php"><img src="img/cat_index.jpg" width="400" height="200" alt="Pagina principal"></a>
+<h1>Editando un poema</h1>
 
 <?php
 
-if(isset($_GET["upd_buscar"])){//Evento de boton buscar
+$id_poema = $_GET["upd_id"];
 
-    $id_poema = $_GET["upd_id"];
+if($id_poema != ""){
 
-    if($id_poema != ""){
+    $query_by_id = "SELECT * FROM POEMA WHERE ID = $id_poema;";
 
-        $query_by_id = "SELECT * FROM POEMA WHERE ID = $id_poema;";
+    $result = mysqli_query($conn,$query_by_id);
 
-        $result = mysqli_query($conn,$query_by_id);
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
 
-        if (mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_assoc($result);
+        $autor = $row["autor"];
+        $titulo = $row["titulo"];
+        $contenido = $row["contenido"];
 
-            $autor = $row["autor"];
-            $titulo = $row["titulo"];
-            $contenido = $row["contenido"];
-
-            //Implemento un formulario sobre el cual aplico logica PHP
-            echo "
-            <div class='container'>
-            <form action='' method='post'>
-                <div class='row'>
-                    <label for='colFormLabelLg' class='col-sm-2 col-form-label col-form-label-lg'>Autor</label>
-                    <input type='text' class='form-control form-control-lg' id='autor' name='upd_autor' value='$autor'>
-                </div>
-                <div class='row'>
-                    <label for='colFormLabelLg' class='col-sm-2 col-form-label col-form-label-lg'>Titulo</label>
-                    <input type='text' class='form-control form-control-lg' id='titulo' name='upd_titulo' value='$titulo'>
-                </div>
-                <div class='row'>
-                    <label for='colFormLabelLg' class='col-sm-2 col-form-label col-form-label-lg'>Contenido</label>
-                    <input type='text' class='form-control form-control-lg' id='contenido' name='upd_contenido' value='$contenido'>
-                </div>
-                <div class='row'>
-                    <button type='submit' name='upd_poema' class='btn btn-primary'>Actualizar poema</button>
-                </div>
-            </form> 
+        //Implemento un formulario sobre el cual aplico logica PHP
+        echo "
+        <div class='container'>
+        <form action='' method='post'>
+            <div class='row'>
+                <label for='colFormLabelLg' class='col-sm-2 col-form-label col-form-label-lg'>Autor</label>
+                <input type='text' class='form-control form-control-lg' id='autor' name='upd_autor' value='$autor'>
             </div>
-            ";
+            <div class='row'>
+                <label for='colFormLabelLg' class='col-sm-2 col-form-label col-form-label-lg'>Titulo</label>
+                <input type='text' class='form-control form-control-lg' id='titulo' name='upd_titulo' value='$titulo'>
+            </div>
+            <div class='row'>
+                <label for='colFormLabelLg' class='col-sm-2 col-form-label col-form-label-lg'>Contenido</label>
+                <input type='text' class='form-control form-control-lg' id='contenido' name='upd_contenido' value='$contenido'>
+            </div>
+            <div class='row'>
+                <button type='submit' name='upd_poema' class='btn btn-primary'>Editar poema</button>
+            </div>
+            <a href='index.php' class='btn btn-primary'>Regresar al inicio</a>
 
-        }
-        else{
-            echo "<p>No existe el poema # $id_poema</p>";
-        }
+        </form> 
+        </div>
+        ";
+
     }
     else{
-        echo "<p>Ingrese el # del poema a editar, puede obtener el # en el buscador</p>";
+        echo "<p>No existe el poema # $id_poema</p>";
     }
 }
 
@@ -141,11 +124,11 @@ if(isset($_GET["upd_buscar"])){//Evento de boton buscar
         $row_affected = mysqli_affected_rows($conn);
 
         if($row_affected>0){
-            echo "Se modifico el poema";
-            header("Location: update.php");
+            echo "<p>Se edito el poema: '\t $titulo \t' de $autor</p><br>;
+            <a href='read.php?read_id=$id_poema' class='btn btn-primary'>Leer el poema editado</a>";
         }
         else{
-            echo "<p>No se logro modificar el poema</p>";
+            echo "<p>No se pudo editar el poema</p>";
         }
     }
 

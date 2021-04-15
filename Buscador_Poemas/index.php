@@ -65,7 +65,7 @@ dinamicamente los elementos se usa PHP*/
 
 ?>
 <div class="container">
-<a href="index.php"><img src="img/cat_potato.jpg" width="150" height="125" alt="Pagina princial"></a>
+<a href="index.php"><img src="img/cat_index.jpg" width="400" height="200" alt="Pagina principal"></a>
 <h1>Busca un poema</h1>
     <form action="" method="get">
         <div class="row">

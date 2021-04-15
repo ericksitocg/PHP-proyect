@@ -57,7 +57,7 @@ if (!$conn) {
 ?>
 
 <div class="container">
-<a href="index.php"><img src="img/cat_potato.jpg" width="150" height="125" alt="Pagina princial"></a>
+<a href="index.php"><img src="img/cat_index.jpg" width="400" height="200" alt="Pagina principal"></a>
 <h1>Crear un poema</h1>
 
     <form action="" method="post">
@@ -87,20 +87,27 @@ if (!$conn) {
         $titulo = $_POST["add_titulo"];
         $contenido = $_POST["add_contenido"];
 
-        $query_add = "INSERT INTO poema (autor, titulo, contenido) VALUES ('$autor', '$titulo', '$contenido');";
+        if($autor!="" && $titulo!="" && $contenido!=""){
 
-        $result = mysqli_query($conn,$query_add);
+            $query_add = "INSERT INTO poema (autor, titulo, contenido) VALUES ('$autor', '$titulo', '$contenido');";
 
-        $row_affected = mysqli_affected_rows($conn);
+            $result = mysqli_query($conn,$query_add);
 
-        if($row_affected>0){
-            echo "Se registro el poema correctamente";        
-            //TODO CORREGIR REDIRECCIONAMIENTO!!!
-            header("Location: index.php");
-            die();
+            $row_affected = mysqli_affected_rows($conn);
+
+            if($row_affected>0){
+
+                $id_poema = $row_affected['ID'];
+
+                echo "<p>Se agrego el poema $titulo de $autor</p>";
+//TODO leer ID despues de Insert  echo "<a href='read.php?read_id=$id_poema' class='btn btn-primary'>Leer el poema agregado</a>";
+            }
+            else{
+                echo "<p>No se pudo registrar el poema</p>";
+            }
         }
         else{
-            echo "<p>No se pudo registrar el poema</p>";
+            echo "<p>Complete los campos para agregar el poema</p>";
         }
     }
 

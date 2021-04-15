@@ -88,8 +88,8 @@ if (mysqli_num_rows($result) > 0) {
             <p class='card-text'>$contenido</p>
 
             <div class='d-grid gap-2 d-md-block'>
-                <a href='update.php' class='btn btn-primary'>Actualizar poema</a>
-                <a href='delete.php' class='btn btn-danger'>Borrar poema</a>
+                <a href='update.php?upd_id=$id_poema' class='btn btn-primary'>Actualizar poema</a>
+                <a href='confirm_del.php?del_id=$id_poema' class='btn btn-danger'>Borrar poema</a>
             </div>
             
             <a href='index.php' class='btn btn-primary'>Regresar al inicio</a>
