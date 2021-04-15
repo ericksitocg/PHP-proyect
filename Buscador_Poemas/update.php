@@ -75,6 +75,7 @@ if(isset($_GET["upd_buscar"])){//Evento de boton buscar
         $titulo = $row["titulo"];
         $contenido = $row["contenido"];
 
+        //Implemento un formulario sobre el cual aplico logica PHP
         echo "
         <div class='container'>
         <form action='' method='post'>
@@ -106,7 +107,7 @@ if(isset($_GET["upd_buscar"])){//Evento de boton buscar
 ?>
 <?php
 
-    if(isset($_POST["upd_poema"])){//Evento de boton ACTUALIZAR
+    if(isset($_POST["upd_poema"])){//Evento de boton ACTUALIZAR del nuevo formulario
 
         $new_autor = $_POST["upd_autor"];
         $new_titulo = $_POST["upd_titulo"];

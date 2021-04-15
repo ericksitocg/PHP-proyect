@@ -61,6 +61,7 @@ if (!$conn) {
 <?php
     if(isset($_POST["del_poema"])){//Evento de boton BORRAR
 
+        //Primer query de consulta para obtener datos del poema por ID
         $id_poema = $_POST["del_id"];
         $query_sel = "SELECT * FROM poema WHERE ID = '$id_poema';";
         $result_select = mysqli_query($conn,$query_sel);
@@ -71,7 +72,8 @@ if (!$conn) {
                 $autor = $row["autor"];
                 $titulo = $row["titulo"];
 
-                $query_del = "DELETE FROM poema WHERE ID = '$id_poema';";//Borro usando el id
+                //Segundo query de accion para eliminar el poema por ID
+                $query_del = "DELETE FROM poema WHERE ID = '$id_poema';";
                 $result = mysqli_query($conn,$query_del);
                 $row_affected = mysqli_affected_rows($conn);
 

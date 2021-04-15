@@ -2,4 +2,4 @@ El programa presenta un CRUD de poemas, los cuales son exportados de un CSV a My
 Se aplico la PROGRAMACION ORIENTADA A PROCEDIMIENTOS usando PHP
 
 Las operaciones DEL,UPD se realizan en ventanas independientes tomando datos explicitos (ID)
-Cada ventana consta con un formulario para obtener datos con el que se realizan consultas en MySQL
+Cada ventana consta con un formulario para obtener datos, seguido de la logica en PHP con el que se realizan consultas en MySQL
