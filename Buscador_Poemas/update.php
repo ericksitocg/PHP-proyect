@@ -38,6 +38,8 @@ img{
     margin:auto;
 }
 
+.btn-primary, .btn-primary:hover { border-color: pink; background-color: violet;}
+
 </style>
 
 <body>
@@ -65,7 +67,7 @@ if (!$conn) {
             </div>
         </div>
         <div class="row">
-            <button type="submit" name="upd_buscar">Presentar poema</button>
+            <button type="submit" name="upd_buscar" class='btn btn-primary'>Presentar poema</button>
         </div>
         <a href='index.php' class='btn btn-primary'>Regresar al inicio</a>
     </form>
@@ -107,7 +109,7 @@ if(isset($_GET["upd_buscar"])){//Evento de boton buscar
                     <input type='text' class='form-control form-control-lg' id='contenido' name='upd_contenido' value='$contenido'>
                 </div>
                 <div class='row'>
-                    <button type='submit' name='upd_poema'>Actualizar poema</button>
+                    <button type='submit' name='upd_poema' class='btn btn-primary'>Actualizar poema</button>
                 </div>
             </form> 
             </div>

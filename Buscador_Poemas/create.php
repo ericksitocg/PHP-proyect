@@ -38,6 +38,8 @@ label{
     color: #ffffff;
 }
 
+.btn-primary, .btn-primary:hover { border-color: pink; background-color: violet;}
+
 </style>
 
 <body>
@@ -72,7 +74,7 @@ if (!$conn) {
             <input type="text" class="form-control form-control-lg" id="texto" name="add_contenido">
         </div>
         <div class="row">
-            <button type="submit" name="add_poema">Agregar poema</button>
+            <button type="submit" name="add_poema" class='btn btn-primary'>Agregar poema</button>
         </div>
         <a href='index.php' class='btn btn-primary'>Regresar al inicio</a>
     </form>

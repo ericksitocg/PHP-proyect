@@ -44,6 +44,7 @@ img{
     object-fit: cover;
 }
 
+.btn-primary, .btn-primary:hover { border-color: pink; background-color: violet;}
 
 </style>
 

@@ -38,6 +38,8 @@ img{
     margin:auto;
 }
 
+.btn-primary, .btn-primary:hover { border-color: pink; background-color: violet;}
+
 </style>
 
 <body>
@@ -60,11 +62,13 @@ if (!$conn) {
     <form action="" method="post">
 
         <div class="row">
-            <label for="colFormLabelLg" class="col-sm-10 col-form-label col-form-label-lg"># del poema</label>
-            <input type="text" class="form-control form-control-lg" id="titulo" name="del_id">
+            <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg"># del poema</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control form-control-lg" id="titulo" name="del_id">
+            </div>
         </div>
         <div class="row">
-            <button type="submit" name="del_poema">Borrar poema</button>
+            <button type="submit" name="del_poema" class='btn btn-primary'>Borrar poema</button>
         </div>
         <a href='index.php' class='btn btn-primary'>Regresar al inicio</a>
 

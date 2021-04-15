@@ -44,6 +44,8 @@ img{
     margin:auto;
 }
 
+.btn-primary, .btn-primary:hover { border-color: pink; background-color: violet;}
+
 </style>
 
 <body>
@@ -73,14 +75,14 @@ dinamicamente los elementos se usa PHP*/
             </div>
         </div>
         <div class="row">
-            <button type="submit" name="buscar">Buscar poemas por autor</button>
+            <button type="submit" name="buscar" class='btn btn-primary'>Buscar poemas por autor</button>
         </div>
     </form>
 
     <div class='d-grid gap-2 d-md-block'>
         <a href='create.php' class='btn btn-primary'>Ingresar un poema</a>
-        <a href='update.php' class='btn btn-primary'>Actualizar un poema</a>
-        <a href='delete.php' class='btn btn-danger'>Borrar un poema</a>
+        <!--<a href='update.php' class='btn btn-primary'>Actualizar un poema</a>
+        <a href='delete.php' class='btn btn-danger'>Borrar un poema</a>-->
     </div>
 
 </div>
