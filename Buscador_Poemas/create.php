@@ -100,7 +100,7 @@ if (!$conn) {
                 $id_poema = $row_affected['ID'];
 
                 echo "<p>Se agrego el poema $titulo de $autor</p>";
-//TODO leer ID despues de Insert  echo "<a href='read.php?read_id=$id_poema' class='btn btn-primary'>Leer el poema agregado</a>";
+                //TODO leer ID despues de Insert  echo "<a href='read.php?read_id=$id_poema' class='btn btn-primary'>Leer el poema agregado</a>";
             }
             else{
                 echo "<p>No se pudo registrar el poema</p>";

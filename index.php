@@ -200,9 +200,32 @@ para el usuario[NO VISIBLE].
 
 <form action="busqueda.php" method="get" name="datos_usuario" id="datos_usuario">
 
-$_GET para realizar una consulta, obtener datos
-$_POST para realizar un registro, crear datos
+$_GET para realizar una consulta,enviar parametros sencillos como id, se envia por <a>
+$_POST para realizar un registro, enviar parametros largos como el contenido o titulo,se envia por <form>
 
+*/
+
+//COMUNICACION ENTRE PAGINAS
+/*
+Uso de formularios, se indica la pagina php donde seran recibidos los datos
+Uso de enlaces <a>, se indica la url usando los parametros que seran enviados, y la pagina donde seran recibidos
+
+<a href='read.php?read_id=$id_poema'  class='btn btn-primary' >Presentar</a>
+
+*/
+
+
+//Proteccion ante inyeccion SQL
+/*
+Ejemplo de inyeccion, ingresar en el campo del formulario: ' or '1'='1
+USO DE REAL_ESCAPE_STRING()
+Se agrega la funcion para limpiar caracteres extraños al parametro recibido
+*/
+
+$busq_autor = mysqli_real_escape_string($conn,$_GET["autor"]);
+
+//CONSULTAS PREPARADAS
+/*
 */
 
 ?>
