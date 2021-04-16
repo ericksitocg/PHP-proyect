@@ -81,8 +81,6 @@ dinamicamente los elementos se usa PHP*/
 
     <div class='d-grid gap-2 d-md-block'>
         <a href='create.php' class='btn btn-primary'>Ingresar un poema</a>
-        <!--<a href='update.php' class='btn btn-primary'>Actualizar un poema</a>
-        <a href='delete.php' class='btn btn-danger'>Borrar un poema</a>-->
     </div>
 
 </div>
@@ -91,9 +89,14 @@ dinamicamente los elementos se usa PHP*/
     <div class='accordion' id='accordionExample'>
 
 <?php
+    /*
+    Seguridad ante inyeccion SQL
+    Uso de mysqli_real_escape_string() para limpiar el parametro recibido
+    */
     if(isset($_GET["buscar"])){//Evento de boton BUSCAR
 
-        $busq_autor = $_GET["autor"];
+        $busq_autor = mysqli_real_escape_string($conn,$_GET["autor"]);
+        //$busq_autor = $_GET["autor"]; //VULNERABLE A INYECCION SQL
 
         if($busq_autor != ""){
 

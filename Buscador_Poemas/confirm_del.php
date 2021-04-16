@@ -67,7 +67,7 @@ if (!$conn) {
 
 <?php
 //Recibiendo el ID del poema a leer
-$id_poema = $_GET["del_id"];
+$id_poema = mysqli_real_escape_string($conn,$_GET["del_id"]);
 
 $query_by_id = "SELECT * FROM POEMA WHERE ID = $id_poema;";
 

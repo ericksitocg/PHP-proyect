@@ -83,9 +83,9 @@ if (!$conn) {
 <?php
     if(isset($_POST["add_poema"])){//Evento de boton AGREGAR
 
-        $autor = $_POST["add_autor"];
-        $titulo = $_POST["add_titulo"];
-        $contenido = $_POST["add_contenido"];
+        $autor = mysqli_real_escape_string($conn,$_POST["add_autor"]);
+        $titulo = mysqli_real_escape_string($conn,$_POST["add_titulo"]);
+        $contenido = mysqli_real_escape_string($conn,$_POST["add_contenido"]);
 
         if($autor!="" && $titulo!="" && $contenido!=""){
 

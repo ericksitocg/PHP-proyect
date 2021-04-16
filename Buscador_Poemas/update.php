@@ -62,7 +62,7 @@ if (!$conn) {
 
 <?php
 
-$id_poema = $_GET["upd_id"];
+$id_poema = mysqli_real_escape_string($conn,$_GET["upd_id"]);
 
 if($id_poema != ""){
 
@@ -113,9 +113,9 @@ if($id_poema != ""){
 
     if(isset($_POST["upd_poema"])){//Evento de boton ACTUALIZAR del nuevo formulario
 
-        $new_autor = $_POST["upd_autor"];
-        $new_titulo = $_POST["upd_titulo"];
-        $new_contenido = $_POST["upd_contenido"];
+        $new_autor = mysqli_real_escape_string($conn,$_POST["upd_autor"]);
+        $new_titulo = mysqli_real_escape_string($conn,$_POST["upd_titulo"]);
+        $new_contenido = mysqli_real_escape_string($conn,$_POST["upd_contenido"]);
 
         $query_update = "UPDATE POEMA SET autor='$new_autor',titulo='$new_titulo',contenido='$new_contenido' WHERE ID = $id_poema;";
  

@@ -62,7 +62,7 @@ if (!$conn) {
 <?php
 
     //Primer query de consulta para obtener datos del poema por ID
-    $id_poema = $_GET["del_id"];
+    $id_poema = mysqli_real_escape_string($conn,$_GET["del_id"]);
 
     if($id_poema != ""){
 
