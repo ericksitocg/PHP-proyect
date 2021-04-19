@@ -69,16 +69,23 @@ if (!$conn) {
 //Recibiendo el ID del poema a leer
 $id_poema =  mysqli_real_escape_string($conn,$_GET["read_id"]);
 
-$query_by_id = "SELECT * FROM POEMA WHERE ID = $id_poema;";
+ /*Seguridad ante inyeccion SQL
+Uso de CONSULTAS PREPARADAS 
+----------------------------------------------------*/
 
-$result = mysqli_query($conn,$query_by_id);
+$query_by_id = "SELECT * FROM POEMA WHERE ID = ?";
 
-if (mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result);
+$stmt = mysqli_prepare($conn,$query_by_id);
 
-    $autor = $row["autor"];
-    $titulo = $row["titulo"];
-    $contenido = $row["contenido"];
+$stmt_bind = mysqli_stmt_bind_param($stmt,"i",$id_poema);
+
+$exec = mysqli_stmt_execute($stmt);
+
+$asoc = mysqli_stmt_bind_result($stmt,$autor,$contenido,$titulo,$id);//Si usamos * se envia en el orden de la tabla
+
+while(mysqli_stmt_fetch($stmt)){
+
+    /*----------------------------------------------------*/
 
     echo "
     <div class='card'>
@@ -99,6 +106,9 @@ if (mysqli_num_rows($result) > 0) {
     ";
 
 }
+
+mysqli_stmt_close($stmt);
+
 
 ?>
 </div>

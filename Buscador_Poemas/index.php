@@ -99,7 +99,7 @@ dinamicamente los elementos se usa PHP*/
         //$busq_autor = $_GET["autor"]; //VULNERABLE A INYECCION SQL
 
         if($busq_autor != ""){
-
+   
             $query_by_autor = "SELECT * FROM POEMA WHERE AUTOR LIKE '%$busq_autor%';";
 
             $result = mysqli_query($conn,$query_by_autor);

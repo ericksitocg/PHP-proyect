@@ -214,6 +214,28 @@ Uso de enlaces <a>, se indica la url usando los parametros que seran enviados, y
 
 */
 
+//Tipo de consultas SQL
+/*
+Consultas de seleccion
+    $result = mysqli_query($conn,$query);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+        }
+    }
+
+Consulta de accion: INSERT,UPDATE,DELETE
+
+    $result = mysqli_query($conn,$query_del);
+    $row_affected = mysqli_affected_rows($conn);
+
+    if($row_affected>0){
+        $last_id = mysqli_insert_id($conn);
+        
+    }
+
+
+*/
 
 //Proteccion ante inyeccion SQL
 /*
@@ -221,11 +243,35 @@ Ejemplo de inyeccion, ingresar en el campo del formulario: ' or '1'='1
 USO DE REAL_ESCAPE_STRING()
 Se agrega la funcion para limpiar caracteres extraños al parametro recibido
 */
-
 $busq_autor = mysqli_real_escape_string($conn,$_GET["autor"]);
 
 //CONSULTAS PREPARADAS
 /*
+Funciones que implementa seguridad y eficiencia al ejecutar un query, haciendo una preparacion a la consulta
+de forma que solo se necesita procesar una vez, de ahi solo recibe parametros.
 */
+//1)Escribir la sentencia SQL sustituyendo los valores de las variables con el simbolo ?
+$query = "SELECT TITULO FROM POEMA WHERE AUTOR = ?";
 
+//2)Preparar la consulta
+$stmt = mysqli_prepare($conn,$query);//->Devuelve [objeto mysqli_stmt]!!
+
+//3)Unir parametros de la sentencia SQL con los datos enviados por formulario
+//Se usa el objeto mysqli_stmt , un string con los TIPOS de datos de la variable y las variables recuperadas del formulario
+$autor = $_GET['autor'];
+$stmt_bind = mysqli_stmt_bind_param($stmt,"s",$autor);//[True o False]
+
+//4)Ejecutar la consulta [True o False]
+$exec = mysqli_stmt_execute($stmt);
+
+//5)Asociar variables para cada campo, resultado de la consulta.
+$asoc = mysqli_stmt_bind_result($stmt,$titulo_resultado);
+
+//6)Lectura de valores 
+while(mysqli_stmt_fetch($stmt)){
+    echo "<p>$autor<p>";
+}
+
+//7)Cerrar la sesion
+mysqli_stmt_close($stmt);
 ?>
