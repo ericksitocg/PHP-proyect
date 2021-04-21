@@ -1,5 +1,16 @@
-El programa presenta un CRUD de poemas, los cuales son exportados de un CSV a MySQL
-Se aplico la PROGRAMACION ORIENTADA A PROCEDIMIENTOS usando PHP
+BUSCADOR DE POEMAS
 
-Las operaciones DEL,UPD se realizan en ventanas independientes tomando datos explicitos (ID)
-Cada ventana consta con un formulario para obtener datos, seguido de la logica en PHP con el que se realizan consultas en MySQL
+Pagina web dinamica de poemas, permite buscar,crear, leer, eliminar y actualizar los poemas.
+
+Usa PHP implementando programacion PROCEDIMENTAL
+Usa MySQL como motor de base de datos, implementa una tabla simple con los siguientes campos:
+
+|---------POEMA-----------|
+|ID|autor|titulo|contenido|
+
+La estructura HTML se forma dinamicamente usando los resultados de las operaciones CRUD
+Las operaciones se basan en la ejecucion DIRECTA de consultas SQL y el manejo de los resultados del mismo.
+
+La tabla POEMA se forma a partir de un CSV, usando un comando en la consola de MySQL.
+
+-- PHP permite conectar a una base de datos usando Prog.Procedimental y Prog.Orienta a Objetos (PDO)
