@@ -1,8 +1,11 @@
 <?php
+    //PROCEDIMENTAL-------------------------------------------------------------------
+
     $servername = "localhost";
     $database = "proyectodaw";
     $username = "root";
     $password = "";
+
     // Create connection
     $conn = mysqli_connect($servername, $username, $password, $database);
     // Check connection
@@ -38,4 +41,15 @@
     }
 
     mysqli_close($conn);
+
+    //PDO---------------------------------------------------------------------------
+    /*PHP Document Object, intefaz orientada a objetos aplicable a varios motores de bases de datos*/
+
+    $servername = "localhost";
+    $database = "proyectodaw";
+    $username = "root";
+    $password = "";
+
+    
+
 ?>

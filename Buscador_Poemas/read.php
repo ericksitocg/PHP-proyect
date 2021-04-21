@@ -70,8 +70,8 @@ if (!$conn) {
 $id_poema =  mysqli_real_escape_string($conn,$_GET["read_id"]);
 
  /*Seguridad ante inyeccion SQL
-Uso de CONSULTAS PREPARADAS 
-----------------------------------------------------*/
+            Uso de CONSULTAS PREPARADAS 
+--------------------------------------------------------*/
 
 $query_by_id = "SELECT * FROM POEMA WHERE ID = ?";
 
@@ -84,8 +84,9 @@ $exec = mysqli_stmt_execute($stmt);
 $asoc = mysqli_stmt_bind_result($stmt,$autor,$contenido,$titulo,$id);//Si usamos * se envia en el orden de la tabla
 
 while(mysqli_stmt_fetch($stmt)){
+    //Uso directamente las variables declaradas en stmt_bind_result
 
-    /*----------------------------------------------------*/
+    /*-----------------------------------------------------------*/
 
     echo "
     <div class='card'>
