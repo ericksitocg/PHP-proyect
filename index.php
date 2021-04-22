@@ -207,8 +207,8 @@ $_POST para realizar un registro, enviar parametros largos como el contenido o t
 
 //-------------------------------COMUNICACION ENTRE PAGINAS
 /*
-Uso de formularios, se indica la pagina php donde seran recibidos los datos
-Uso de enlaces <a>, se indica la url usando los parametros que seran enviados, y la pagina donde seran recibidos
+Uso de formularios, se indica la pagina php donde seran recibidos los datos [POST]
+Uso de enlaces <a>, se indica la url formado por:La pagina donde seran recibidos y los parametros que seran enviados [GET]
 
 <a href='read.php?read_id=$id_poema'  class='btn btn-primary' >Presentar</a>
 
@@ -236,7 +236,7 @@ Consulta de accion: INSERT,UPDATE,DELETE
 
 */
 
-//--------------------------------Proteccion ante inyeccion SQL MYSQL
+//Proteccion ante inyeccion SQL MYSQL--------------------------------[buscador de poemas/read.php]
 /*
 Ejemplo de inyeccion, ingresar en el campo del formulario: ' or '1'='1
 USO DE REAL_ESCAPE_STRING()
