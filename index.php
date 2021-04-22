@@ -244,4 +244,5 @@ Se agrega la funcion para limpiar caracteres extraños al parametro recibido
 
 $busq_autor = mysqli_real_escape_string($conn,$_GET["autor"]);
 */
+
 ?>
