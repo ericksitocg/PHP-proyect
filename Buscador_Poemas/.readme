@@ -13,4 +13,4 @@ Las operaciones se basan en la ejecucion DIRECTA de consultas SQL y el manejo de
 
 La tabla POEMA se forma a partir de un CSV, usando un comando en la consola de MySQL.
 
--- PHP permite conectar a una base de datos usando Prog.Procedimental y Prog.Orienta a Objetos (PDO)
+-- PHP permite conectar a una base de datos usando Prog.Procedimental y Prog.Orientada a Objetos (PDO)

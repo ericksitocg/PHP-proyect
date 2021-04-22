@@ -22,11 +22,13 @@
 
     $result = mysqli_query($conn,$query);//Se usa para las demas funciones
 
+    //----------------------------------------------------------------------------
     //Presentar los nombres de los campos (columnas)
     for($column = 0;$column< mysqli_num_fields($result);$column++){
-        $column_name = mysqli_fetch_field_direct($result,$column);//Objeto 
+        $column_name = mysqli_fetch_field_direct($result,$column);//Objeto [solo en este caso]
         echo $column_name -> name . " | ";//-> se refiere a una propiedad de un objeto
     }
+    //----------------------------------------------------------------------------
     echo "<br>";
 
     //Informacion de la tabla
@@ -41,15 +43,5 @@
     }
 
     mysqli_close($conn);
-
-    //PDO---------------------------------------------------------------------------
-    /*PHP Document Object, intefaz orientada a objetos aplicable a varios motores de bases de datos*/
-
-    $servername = "localhost";
-    $database = "proyectodaw";
-    $username = "root";
-    $password = "";
-
-    
 
 ?>

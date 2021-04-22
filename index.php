@@ -214,7 +214,7 @@ Uso de enlaces <a>, se indica la url usando los parametros que seran enviados, y
 
 */
 
-//Tipo de consultas SQL
+//Tipo de consultas SQL y manejo PROCEDIMENTAL
 /*
 Consultas de seleccion
     $result = mysqli_query($conn,$query);
@@ -264,7 +264,7 @@ $stmt_bind = mysqli_stmt_bind_param($stmt,"s",$autor);//[True o False]
 //4)Ejecutar la consulta [True o False]
 $exec = mysqli_stmt_execute($stmt);
 
-//5)Asociar variables para cada campo, resultado de la consulta.
+//5)Asociar variables para cada campo del resultado de una consulta de SELECCION.
 $asoc = mysqli_stmt_bind_result($stmt,$titulo_resultado);
 
 //6)Lectura de valores 
