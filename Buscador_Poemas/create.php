@@ -71,7 +71,9 @@ if (!$conn) {
         </div>
         <div class="row">
             <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Contenido</label>
-            <input type="text" class="form-control form-control-lg" id="texto" name="add_contenido">
+            <!--<input type="text" class="form-control form-control-lg" id="texto" name="add_contenido">-->
+            <textarea class="form-control form-control-lg" id="texto" name="add_contenido" rows="3">
+            </textarea>
         </div>
         <div class="row">
             <button type="submit" name="add_poema" class='btn btn-primary'>Agregar poema</button>
