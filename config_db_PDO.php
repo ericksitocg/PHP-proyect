@@ -19,11 +19,18 @@ try {
     //---------------------------CONSULTA PREPADA USANDO PDO
     $autor = "Gabriela Mistral";//$_GET["autor"];
     $titulo = "Atardecer";//$_GET["titulo"];
+
     $query = "SELECT * FROM POEMA WHERE AUTOR = ? AND TITULO = ?";
 
+    //$query_marcadores = "SELECT * FROM POEMA WHERE AUTOR = :p_autor AND TITULO = :p_titulo";
+
     $stmt = $conn->prepare($query);
-    //Execute recibe los parametros de la sentencia SQL en orden para asociarlo a la consulta
+    //Execute recibe los parametros de la sentencia SQL en orden como un array
     $stmt->execute(array($autor,$titulo));
+
+    //Execute recibe los parametros de la sentencia SQL usando los marcadores como clave los y como valor las variables
+    //$stmt->execute(array("p_autor"=>$autor,"p_titulo"=>$titulo));
+
 
     echo "
     <table>
