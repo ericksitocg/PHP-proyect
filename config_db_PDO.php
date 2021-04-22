@@ -16,9 +16,9 @@ try {
     //Permite lanzar una excepcion a un error en la ejecucion
     $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     
-    //CONSULTA PREPADA USANDO PDO
-    $autor = "";//$_GET["autor"];
-    $titulo = "";//$_GET["titulo"];
+    //---------------------------CONSULTA PREPADA USANDO PDO
+    $autor = "Gabriela Mistral";//$_GET["autor"];
+    $titulo = "Atardecer";//$_GET["titulo"];
     $query = "SELECT * FROM POEMA WHERE AUTOR = ? AND TITULO = ?";
 
     $stmt = $conn->prepare($query);

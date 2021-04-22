@@ -200,12 +200,12 @@ para el usuario[NO VISIBLE].
 
 <form action="busqueda.php" method="get" name="datos_usuario" id="datos_usuario">
 
-$_GET para realizar una consulta,enviar parametros sencillos como id, se envia por <a>
+$_GET para realizar una consulta,enviar parametros sencillos como id, se envia por la url, usando <a>
 $_POST para realizar un registro, enviar parametros largos como el contenido o titulo,se envia por <form>
 
 */
 
-//COMUNICACION ENTRE PAGINAS
+//-------------------------------COMUNICACION ENTRE PAGINAS
 /*
 Uso de formularios, se indica la pagina php donde seran recibidos los datos
 Uso de enlaces <a>, se indica la url usando los parametros que seran enviados, y la pagina donde seran recibidos
@@ -237,19 +237,19 @@ Consulta de accion: INSERT,UPDATE,DELETE
 
 */
 
-//Proteccion ante inyeccion SQL
+//--------------------------------Proteccion ante inyeccion SQL MYSQL
 /*
 Ejemplo de inyeccion, ingresar en el campo del formulario: ' or '1'='1
 USO DE REAL_ESCAPE_STRING()
 Se agrega la funcion para limpiar caracteres extraños al parametro recibido
-*/
-$busq_autor = mysqli_real_escape_string($conn,$_GET["autor"]);
 
-//CONSULTAS PREPARADAS
-/*
-Funciones que implementa seguridad y eficiencia al ejecutar un query, haciendo una preparacion a la consulta
-de forma que solo se necesita procesar una vez, de ahi solo recibe parametros.
+$busq_autor = mysqli_real_escape_string($conn,$_GET["autor"]);
 */
+//--------------------------------CONSULTAS PREPARADAS usando MYSQLI [Buscador de poemas/read.php]
+
+//Funciones que implementa seguridad y eficiencia al ejecutar un query, haciendo una preparacion a la consulta
+//de forma que solo se necesita procesar una vez, de ahi solo recibe parametros.
+/*
 //1)Escribir la sentencia SQL sustituyendo los valores de las variables con el simbolo ?
 $query = "SELECT TITULO FROM POEMA WHERE AUTOR = ?";
 
@@ -268,10 +268,12 @@ $exec = mysqli_stmt_execute($stmt);
 $asoc = mysqli_stmt_bind_result($stmt,$titulo_resultado);
 
 //6)Lectura de valores 
+
 while(mysqli_stmt_fetch($stmt)){
     echo "<p>$autor<p>";
 }
 
 //7)Cerrar la sesion
 mysqli_stmt_close($stmt);
+*/
 ?>

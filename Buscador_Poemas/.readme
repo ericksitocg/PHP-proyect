@@ -2,7 +2,7 @@ BUSCADOR DE POEMAS
 
 Pagina web dinamica de poemas, permite buscar,crear, leer, eliminar y actualizar los poemas.
 
-Usa PHP implementando programacion PROCEDIMENTAL
+Usa PHP implementando programacion PROCEDIMENTAL y la libreria mysqli
 Usa MySQL como motor de base de datos, implementa una tabla simple con los siguientes campos:
 
 |---------POEMA-----------|

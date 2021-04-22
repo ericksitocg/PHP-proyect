@@ -1,5 +1,5 @@
 <?php
-    //PROCEDIMENTAL-------------------------------------------------------------------
+    //PROCEDIMENTAL (MySQLI)-------------------------------------------------------------------
 
     $servername = "localhost";
     $database = "proyectodaw";
