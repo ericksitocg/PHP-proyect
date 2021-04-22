@@ -234,7 +234,6 @@ Consulta de accion: INSERT,UPDATE,DELETE
         
     }
 
-
 */
 
 //--------------------------------Proteccion ante inyeccion SQL MYSQL
@@ -244,36 +243,5 @@ USO DE REAL_ESCAPE_STRING()
 Se agrega la funcion para limpiar caracteres extraños al parametro recibido
 
 $busq_autor = mysqli_real_escape_string($conn,$_GET["autor"]);
-*/
-//--------------------------------CONSULTAS PREPARADAS usando MYSQLI [Buscador de poemas/read.php]
-
-//Funciones que implementa seguridad y eficiencia al ejecutar un query, haciendo una preparacion a la consulta
-//de forma que solo se necesita procesar una vez, de ahi solo recibe parametros.
-/*
-//1)Escribir la sentencia SQL sustituyendo los valores de las variables con el simbolo ?
-$query = "SELECT TITULO FROM POEMA WHERE AUTOR = ?";
-
-//2)Preparar la consulta
-$stmt = mysqli_prepare($conn,$query);//->Devuelve [objeto mysqli_stmt]!!
-
-//3)Unir parametros de la sentencia SQL con los datos enviados por formulario
-//Se usa el objeto mysqli_stmt , un string con los TIPOS de datos de la variable y las variables recuperadas del formulario
-$autor = $_GET['autor'];
-$stmt_bind = mysqli_stmt_bind_param($stmt,"s",$autor);//[True o False]
-
-//4)Ejecutar la consulta [True o False]
-$exec = mysqli_stmt_execute($stmt);
-
-//5)Asociar variables para cada campo del resultado de una consulta de SELECCION.
-$asoc = mysqli_stmt_bind_result($stmt,$titulo_resultado);
-
-//6)Lectura de valores 
-
-while(mysqli_stmt_fetch($stmt)){
-    echo "<p>$autor<p>";
-}
-
-//7)Cerrar la sesion
-mysqli_stmt_close($stmt);
 */
 ?>

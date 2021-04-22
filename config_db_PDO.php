@@ -2,6 +2,8 @@
 //PDO---------------------------------------------------------------------------
 /*PHP Document Object, intefaz orientada a objetos aplicable a varios motores de bases de datos*/
 
+//Conexion usando libreria PDO
+
 $servername = "localhost";
 $database = "poemas";
 $username = "root";
@@ -16,19 +18,19 @@ try {
     //Permite lanzar una excepcion a un error en la ejecucion
     $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     
-    //---------------------------CONSULTA PREPADA USANDO PDO
+    //CONSULTA PREPADA USANDO PDO
+
     $autor = "Gabriela Mistral";//$_GET["autor"];
     $titulo = "Atardecer";//$_GET["titulo"];
 
     $query = "SELECT * FROM POEMA WHERE AUTOR = ? AND TITULO = ?";
-
     //$query_marcadores = "SELECT * FROM POEMA WHERE AUTOR = :p_autor AND TITULO = :p_titulo";
 
     $stmt = $conn->prepare($query);
     //Execute recibe los parametros de la sentencia SQL en orden como un array
     $stmt->execute(array($autor,$titulo));
 
-    //Execute recibe los parametros de la sentencia SQL usando los marcadores como clave los y como valor las variables
+    //En caso de usar marcadores, execute recibe los parametros de la sentencia SQL usando los marcadores como clave los y como valor las variables
     //$stmt->execute(array("p_autor"=>$autor,"p_titulo"=>$titulo));
 
 
@@ -39,7 +41,7 @@ try {
             <th>Contenido</th>
         </tr>
     ";
-
+    //Recorre el resultado de la ejecucion de la consulta
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         $id = $row["ID"];
         $contenido = $row["contenido"];
