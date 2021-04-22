@@ -43,7 +43,7 @@
     //mysqli_close($conn); //Cerrar sesion luego de terminar todas las consultas
 
 
-    //CONSULTAS PREPARADAS usando MYSQLI--------------------------------------------------- [Buscador de poemas/read.php]
+    //CONSULTAS PREPARADAS ----------------------------------------------- [Buscador de poemas/read.php]
     //Funciones que implementa seguridad y eficiencia al ejecutar un query, haciendo una preparacion a la consulta de forma que solo se necesita procesar una vez, de ahi solo recibe parametros.
 
 

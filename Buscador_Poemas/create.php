@@ -101,9 +101,9 @@ if (!$conn) {
 
                 $id_poema = $row_affected['ID'];
 
-                echo "<p>Se agrego el poema $titulo de $autor</p>";
                 $last_id = mysqli_insert_id($conn);
-                echo "<a href='read.php?read_id=$last_id' class='btn btn-primary'>Leer el poema agregado</a>";
+                //echo "<a href='read.php?read_id=$last_id' class='btn btn-primary'>Leer el poema agregado</a>";
+                header('read.php?read_id=$last_id');
             }
             else{
                 echo "<p>No se pudo registrar el poema</p>";
