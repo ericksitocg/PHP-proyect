@@ -20,6 +20,11 @@ try {
     $stmt->execute(array($login_user,$login_pass));
 
     if($stmt->rowCount()>0){
+        //En caso de existir el usuario, se crea una sesion
+        session_start();
+        //Se almacenan los datos compartidos por sesion en variables de sesion usando $_SESSION
+        $_SESSION["usuario"] = $login_user;
+
         header("location:index.php");
     }
     else{

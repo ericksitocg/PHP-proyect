@@ -7,6 +7,13 @@
     <title>Inicio</title>
 </head>
 <body>
+<?php
+//Verificar si existe una session iniciada, y si en esa session se almaceno un usuario
+session_start();
+if(!isset($_SESSION["usuario"])){//Si no esta definida la variable "usuario" en $_SESSION, se redireccina
+    header("location:login.php");
+}
+?>
     <h1>Bienvenido</h1>
 </body>
 </html>
