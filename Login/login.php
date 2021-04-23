@@ -8,12 +8,21 @@
 </head>
 <body>
     <form action="verification.php" method="post">
-        <label >Usuario:</label>
-        <input type="text" name="login_user">
-        <label >Contraseña:</label>
-        <input type="password" name="login_pass">
-
-        <button type="submit">Iniciar sesión</button>
+        <table width="15%" align="center">
+        <tr>
+            <td>Usuario:</td>
+            <td><label for="nombre_usuario"></label>
+            <input type="text" name="login_user" id="nombre_usuario"></td>
+        </tr>
+        <tr>
+            <td>Contraseña:</td>
+            <td><label for="edad_usuario"></label>
+            <input type="password" name="login_pass" id="contra_usuario"></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><input type="submit" name="login" id="enviando" value="Iniciar Sesion"></td>
+        </tr>
+        </table>
     </form>
 </body>
 </html>
