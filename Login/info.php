@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <title>Informacion</title>
 </head>
 <body>
 <?php
@@ -15,9 +15,9 @@ if(!isset($_SESSION["usuario"])){//Si no esta definida la variable "usuario" en 
 }
 ?>
     <h1>Bienvenido: <?php echo $_SESSION["usuario"]; ?></h1>
-    <h2>Pagina principal</h2>
+    <h2>Pagina de informacion</h2>
 
-    <a href="info.php">Informacion</a>
+    <a href="index.php">Inicio</a>
     <a href="close_sesion.php">Cerrar sesion</a>
 
     <p>Solo disponible para usuarios que han iniciado session</p>
