@@ -103,7 +103,7 @@ if (!$conn) {
 
                 $last_id = mysqli_insert_id($conn);
                 //echo "<a href='read.php?read_id=$last_id' class='btn btn-primary'>Leer el poema agregado</a>";
-                header('read.php?read_id=$last_id');
+                header('location:read.php?read_id=$last_id');
             }
             else{
                 echo "<p>No se pudo registrar el poema</p>";

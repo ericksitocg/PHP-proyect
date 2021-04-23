@@ -81,7 +81,7 @@ if (!$conn) {
             $row_affected = mysqli_affected_rows($conn);
 
             if($row_affected>0){
-                header("index.php");
+                header("location:index.php");
             }
             else{
                 echo "<h1>No se puedo eliminar el poema: '\t $titulo \t' de $autor</h1>";

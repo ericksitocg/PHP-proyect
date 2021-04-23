@@ -126,7 +126,7 @@ if($id_poema != ""){
         if($row_affected>0){
         //echo "<p>Se edito el poema: '\t $titulo \t' de $autor</p><br>;
             //<a href='read.php?read_id=$id_poema' class='btn btn-primary'>Leer el poema editado</a>";
-        header("read.php?read_id=$id_poema");
+        header("location:read.php?read_id=$id_poema");
         }
         else{
             echo "<p>No se pudo editar el poema</p>";
