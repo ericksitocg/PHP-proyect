@@ -245,4 +245,24 @@ Se agrega la funcion para limpiar caracteres extraños al parametro recibido
 $busq_autor = mysqli_real_escape_string($conn,$_GET["autor"]);
 */
 
+//Sesiones
+/*
+La implementacion de sesiones permite dar persistencia a los datos al momento de navegar entre las páginas que lo usen.
+Se inicia sesion en la pagina y se crea una variable de sesion usando la variable global $_SESSION para almacenar los datos compartidos
+*/
+
+$user = "el_nombre_de_usuario";
+
+session_start();
+
+echo session_status();
+
+$_SESSION["usuario"] = $user;//Variable de sesion, que podra ser accedida desde otra pagina con la misma sesion
+
+/*Para cerrar la sesion se usa: */
+
+session_destroy();
+
+echo session_status();
+
 ?>
