@@ -1,7 +1,7 @@
 <?php
 
 $servername = "localhost";
-$database = "proyectodaw";
+$database = "login_example";
 $username = "root";
 $password = "";
 
@@ -15,15 +15,15 @@ try {
     $login_pass = $_POST["login_pass"];
 
     //Consulta en base para verificar si el usuario existe
-    $query = "SELECT * FROM USER WHERE USER = ? AND PASSWORD = ? ";
+    $query = "SELECT * FROM USUARIOS WHERE USER = ? AND PASSWORD = ? ";
     $stmt = $conn->prepare($query);
     $stmt->execute(array($login_user,$login_pass));
 
     if($stmt->rowCount()>0){
-        header("index.php");
+        header("location:index.php");
     }
     else{
-        header("login.php");
+        header("location:login.php");
     }
 
 }catch(Exception $e){
