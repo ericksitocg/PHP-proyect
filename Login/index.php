@@ -14,11 +14,16 @@ if(!isset($_SESSION["usuario"])){//Si no esta definida la variable "usuario" en 
     header("location:login.php");
 }
 ?>
-    <h1>Bienvenido: <?php echo $_SESSION["usuario"]; ?></h1>
-    <h2>Pagina principal</h2>
+    <div class="card" style="width: 18rem;">
+        <img src="" class="card-img-top" alt="Usuario registrado">
+        <div class="card-body">
+            <h5 class="card-title"><?php echo $_SESSION["usuario"]; ?></h5>
+            <p class="card-text">Bienvenido: <?php echo $_SESSION["usuario"]; ?></p>
+            <a href="info.php">Informacion</a>
+            <a href="close_sesion.php">Cerrar sesion</a>
 
-    <a href="info.php">Informacion</a>
-    <a href="close_sesion.php">Cerrar sesion</a>
+        </div>
+    </div>
 
     <p>Solo disponible para usuarios que han iniciado session</p>
 </body>
