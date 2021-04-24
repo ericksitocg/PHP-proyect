@@ -247,7 +247,7 @@ $busq_autor = mysqli_real_escape_string($conn,$_GET["autor"]);
 
 //Sesiones
 /*
-La implementacion de sesiones permite dar persistencia a los datos al momento de navegar entre las páginas que lo usen.
+La implementacion de sesiones permite dar persistencia a los datos (en el servidor) al momento de navegar entre las páginas que lo usen.
 Se inicia sesion en la pagina y se crea una variable de sesion usando la variable global $_SESSION para almacenar los datos compartidos
 */
 
@@ -264,5 +264,17 @@ $_SESSION["usuario"] = $user;//Variable de sesion, que podra ser accedida desde 
 session_destroy();
 
 echo session_status();
+
+//Cookies
+/*
+La implementacion de cookies permite dar persistencia a los datos de navegacion (en el cliente), de forma que las paginas puedan leer esta informacion
+desde la pc y usarlas para mejorar la navegacion en las paginas, usualmente se usa para almacenar las preferencias de navegacion.
+La cookie se crea con: el par clave - valor y tiempo de vida,usado la funcion setcookie y se lee desde la variable super global $_COOKIE
+*/
+setcookie("clave","valor",time() + 30);//La cookie solo estara disponible 30 segundos
+
+if(isset($_COOKIE["clave"])){//Accesible desde varias paginas
+    echo "<p>Lo que hay en la cookie 'clave' es: " . $_COOKIE["clave"];
+}
 
 ?>
