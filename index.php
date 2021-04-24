@@ -255,7 +255,12 @@ $user = "el_nombre_de_usuario";
 
 session_start();
 
-echo session_status();
+/*Para verificar el estado de una session se usa session_status() el cual devuelve un entero:
+_DISABLED = 0
+_NONE = 1
+_ACTIVE = 2
+*/
+echo "El estado de sesion es : " . session_status() . "<br>";
 
 $_SESSION["usuario"] = $user;//Variable de sesion, que podra ser accedida desde otra pagina con la misma sesion
 
@@ -263,7 +268,7 @@ $_SESSION["usuario"] = $user;//Variable de sesion, que podra ser accedida desde 
 
 session_destroy();
 
-echo session_status();
+echo "El estado de sesion es : " . session_status() . "<br>";
 
 //Cookies
 /*
