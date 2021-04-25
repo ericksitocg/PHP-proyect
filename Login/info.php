@@ -10,16 +10,16 @@
     <title>Informacion</title>
 
     <?php
-      if(isset($_COOKIE["mode"])){//Leo la cookie en caso de que exista
-          if($_COOKIE["mode"] == "dark"){
-            echo "
-                <style>
-                  body{
-                    background-color: black;
-                  }
-                </style>
-            ";
-          }
+      if(isset($_COOKIE["mode"])){//Lee la cookie de mode
+        if($_COOKIE["mode"] == "dark"){
+          echo "<link rel='stylesheet' href='css/dark.css'>";
+        }
+        else{
+          echo "<link rel='stylesheet' href='css/light.css'>";
+        }
+      }//Si no existe la cookie la creo por primera vez
+      else{
+        header("Location:cookie_mode.php?pag=info");
       }
     ?>
 </head>
@@ -55,7 +55,7 @@ else{
 
 }
 ?>
-<div class="container">
+<div class="container dark_text">
     <div class="row justify-content-center">
         <h1>Pagina de informacion</h1>
         <h2>Datos personales</h2>

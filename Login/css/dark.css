@@ -1,0 +1,8 @@
+/*Estilo oscuro*/
+.dark_text{
+  color: white;
+}
+
+body{
+  background:url('../img/estrella.jpg');
+}
