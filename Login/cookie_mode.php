@@ -1,21 +1,22 @@
 <?php
 
-if(isset($_GET["mode"])){
+if(isset($_COOKIE["mode"])){//Si existe la cookie, cambia el color
 
-    $mode = $_GET["mode"];
+    $mode = $_COOKIE["mode"];
 
     if($mode=="dark"){
-        setcookie("mode","dark", time() + 36000,);
-        header("Location:index_dark.php");
+        setcookie("mode","light", time() + 36000,);
     }
     else{
-        setcookie("mode","light", time() + 36000);
-        header("Location:index.php");
+        setcookie("mode","dark", time() + 36000);
     }
 }
 else{
-    setcookie("mode","light", time() + 36000);
-    header("Location:index.php");
+    //Si no existe la cookie la crea
+    setcookie("mode","dark", time() + 36000);
 }
+
+$pagina = $_GET["pag"];//Pagina de redireccionamiento
+header("Location:$pagina.php")
 
 ?>

@@ -282,4 +282,8 @@ if(isset($_COOKIE["clave"])){//Accesible desde varias paginas
     echo "<p>Lo que hay en la cookie 'clave' es: " . $_COOKIE["clave"];
 }
 
+/*
+Las cookies por defecto solo pueden ser leidas por paginas que esten en su mismo directorio, o en directorios secundarios a el [carpetas hijas]
+*/
+
 ?>

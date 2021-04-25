@@ -8,6 +8,20 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <title>Informacion</title>
+
+    <?php
+      if(isset($_COOKIE["mode"])){//Leo la cookie en caso de que exista
+          if($_COOKIE["mode"] == "dark"){
+            echo "
+                <style>
+                  body{
+                    background-color: black;
+                  }
+                </style>
+            ";
+          }
+      }
+    ?>
 </head>
 <style>
 h1,h2,p {
@@ -57,6 +71,12 @@ else{
         </div>
         <div class="col-md-6 text-center">
             <a class="btn btn-primary" href="script/close_sesion.php">Cerrar sesion</a>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <a class="btn btn-primary" href="cookie_mode.php?pag=info">Cambiar tema</a>
         </div>
     </div>
 </div>

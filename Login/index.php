@@ -8,18 +8,26 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
+    <?php
+      if(isset($_COOKIE["mode"])){//Leo la cookie en caso de que exista
+          if($_COOKIE["mode"] == "dark"){
+            echo "
+                <style>
+                  body{
+                    background-color: black;
+                  }
+                </style>
+            ";
+          }
+      }
+    ?>
+
     <title>Inicio</title>
 
 </head>
 
 <body>
 <?php
-echo $_COOKIE["mode"];
-if(isset($_COOKIE["mode"])){//Leo la cookie en caso de que exista
-    if($_COOKIE["mode"] == "dark"){
-        header("Location:index_dark.php");
-    }
-}
 
 //Verificar si existe una session iniciada, y si en esa session se almaceno un usuario
 session_start();
@@ -63,7 +71,7 @@ else{
                 
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-center">
-                        <a class="btn btn-primary" href="cookie_mode.php?mode=dark">Modo oscuro</a>
+                        <a class="btn btn-primary" href="cookie_mode.php?pag=index">Cambiar tema</a>
                     </div>
                 </div>
 
