@@ -14,8 +14,24 @@
 <?php
 //Verificar si existe una session iniciada, y si en esa session se almaceno un usuario
 session_start();
-if(!isset($_SESSION["usuario"])){//Si no esta definida la variable "usuario" en $_SESSION, se redireccina
+if(!isset($_SESSION["id_usuario"])){//Si no esta definida la variable "usuario" en $_SESSION, se redireccina
     header("location:login.php");
+}
+else{
+    require_once("script/conexion.php");//Objeto conn
+
+    $id_usuario = $_SESSION["id_usuario"];
+
+    $query = "SELECT * FROM info_usuarios WHERE id_usuario = ? ";
+    $stmt = $conn->prepare($query);
+    $stmt->execute(array($id_usuario));
+
+    if($stmt->rowCount()>0){
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    }else{
+        header("location:login.php");
+    }
+
 }
 ?>
 
@@ -24,15 +40,15 @@ if(!isset($_SESSION["usuario"])){//Si no esta definida la variable "usuario" en 
         <div class="card" style="width: 30rem;">
             <img src="img/user.png" class="card-img-top" alt="Usuario registrado">
             <div class="card-body">
-                <h5 class="card-title"><?php echo $_SESSION["usuario"]; ?></h5>
-                <p class="card-text">Bienvenido: <?php echo $_SESSION["usuario"]; ?></p>
+                <h5 class="card-title">Informacion de usuario</h5>
+                <p class="card-text">Bienvenido: <?php echo $row["nombre"]; ?></p>
 
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-center">
-                        <a class="btn btn-primary" href="info.php">Informacion</a>
+                        <a class="btn btn-primary" href="info.php">Descripcion</a>
                     </div>
                     <div class="col-md-6 text-center">
-                        <a class="btn btn-primary" href="close_sesion.php">Cerrar sesion</a>
+                        <a class="btn btn-primary" href="script/close_sesion.php">Cerrar sesion</a>
                     </div>
                 </div>
                 

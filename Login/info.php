@@ -10,29 +10,53 @@
     <title>Informacion</title>
 </head>
 <style>
-h1,h2 {
+h1,h2,p {
     text-align: center;
+}
+h3{
+    font-size:x-large ;
 }
 </style>
 <body>
 <?php
 //Verificar si existe una session iniciada, y si en esa session se almaceno un usuario
 session_start();
-if(!isset($_SESSION["usuario"])){//Si no esta definida la variable "usuario" en $_SESSION, se redireccina
+if(!isset($_SESSION["id_usuario"])){//Si no esta definida la variable "usuario" en $_SESSION, se redireccina
     header("location:login.php");
+}
+else{
+    require_once("script/conexion.php");//Objeto conn
+
+    $id_usuario = $_SESSION["id_usuario"];
+
+    $query = "SELECT * FROM info_usuarios WHERE id_usuario = ? ";
+    $stmt = $conn->prepare($query);
+    $stmt->execute(array($id_usuario));
+
+    if($stmt->rowCount()>0){
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    }else{
+        header("location:login.php");
+    }
+
 }
 ?>
 <div class="container">
     <div class="row justify-content-center">
-        <h1>Bienvenido: <?php echo $_SESSION["usuario"]; ?></h1>
-        <h2>Pagina de informacion</h2>
+        <h1>Pagina de informacion</h1>
+        <h2>Datos personales</h2>
+
+        <h3>Nombre: <?php echo $row["nombre"]; ?></h3>
+        <h3>Apellido: <?php echo $row["apellido"]; ?></h3>
+        <h3>Descripcion:</h3>
+        <p> <?php echo $row["descripcion"]; ?> </p>
     </div>
     <div class="row justify-content-center">
         <div class="col-md-6 text-center">
             <a class="btn btn-primary" href="index.php">Inicio</a>
         </div>
         <div class="col-md-6 text-center">
-            <a class="btn btn-primary" href="close_sesion.php">Cerrar sesion</a>
+            <a class="btn btn-primary" href="script/close_sesion.php">Cerrar sesion</a>
         </div>
     </div>
 </div>

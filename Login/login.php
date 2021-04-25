@@ -13,7 +13,7 @@
 <body>
 <div class="container">
   <div class="row justify-content-center">
-    <form action="verification.php" method="post">
+    <form action="script/verification.php" method="post">
       <div class="col-md-6 mx-auto">
         <label for="for_login_user" class="form-label">Usuario</label>
         <input type="text" class="form-control" name="login_user" id="nombre_usuario" aria-describedby="usuario">
