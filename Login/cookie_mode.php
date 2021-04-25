@@ -16,7 +16,7 @@ else{
     setcookie("mode","dark", time() + 36000);
 }
 
-$pagina = $_GET["pag"];//Pagina de redireccionamiento
+$pagina = $_GET["pag"];//Pagina de origen
 header("Location:$pagina.php")
 
 ?>
