@@ -9,15 +9,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
     <title>Inicio</title>
-
 </head>
+
+<style>
+    body{
+        background-color: black;
+    }
+</style>
+
 
 <body>
 <?php
 echo $_COOKIE["mode"];
+
 if(isset($_COOKIE["mode"])){//Leo la cookie en caso de que exista
-    if($_COOKIE["mode"] == "dark"){
-        header("Location:index_dark.php");
+    if($_COOKIE["mode"] == "light"){
+        header("Location:index.php");
     }
 }
 
@@ -60,13 +67,13 @@ else{
                         <a class="btn btn-primary" href="script/close_sesion.php">Cerrar sesion</a>
                     </div>
                 </div>
-                
+
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-center">
-                        <a class="btn btn-primary" href="cookie_mode.php?mode=dark">Modo oscuro</a>
+                        <a class="btn btn-primary" href="cookie_mode.php?mode=light">Modo claro</a>
                     </div>
                 </div>
-
+                
             </div>
         </div>
     </div>
