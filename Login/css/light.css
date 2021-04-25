@@ -1,4 +1,5 @@
 /*Estilo claro*/
 body{
   background:url('../img/cielo.jpg');
+  background-position: center center;
 }
