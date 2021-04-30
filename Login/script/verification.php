@@ -3,7 +3,7 @@
 require_once("conexion.php");//Objeto conn
 
 $login_user = $_POST["login_user"];
-$login_pass = $_POST["login_pass"];
+$login_pass = $_POST["login_pass"];//Usar password_hash antes de comparar con la BD
 
 //Consulta en base para verificar si el usuario existe
 $query = "SELECT * FROM USUARIOS WHERE USER = ? AND PASSWORD = ? ";

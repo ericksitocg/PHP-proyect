@@ -286,4 +286,19 @@ if(isset($_COOKIE["clave"])){//Accesible desde varias paginas
 Las cookies por defecto solo pueden ser leidas por paginas que esten en su mismo directorio, o en directorios secundarios a el [carpetas hijas]
 */
 
+//Hash-Password
+/*
+Las contraseñas se deben almacenar hasheadas en la base de datos, es decir ILEGIBLES
+Para ecriptar la contraseña, usamos la funcion password_hash() y para verificar una contraseña encriptada usamos password_verify()
+*/
+$pass = "contrasenia";
+$pass_encrip= password_hash($pass,PASSWORD_DEFAULT);
+
+$user_pass = "password";
+
+if(password_verify($user_pass,$pass_encrip)){
+    echo "Contraseña correcta";
+}else{
+    echo "Contraseña incorrecta";
+}
 ?>
