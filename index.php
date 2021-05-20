@@ -301,4 +301,36 @@ if(password_verify($user_pass,$pass_encrip)){
 }else{
     echo "Contraseña incorrecta";
 }
+//Paginacion
+
+$rec_x_pag = 10;//Cuantos registros por cada pagina
+
+if (isset($_GET["pag"])){
+    $pag = $_GET["pag"];//Recibo por get la pagina, siempre antes de un valor &a=#
+}
+else{
+    $pag = 1;
+}
+
+$rec_inicio = ($pag - 1)*$rec_x_pag;
+
+/*Query para contar el total de registros*/
+
+$query_count = "SELECT COUNT(*) as 'c' FROM POEMA WHERE AUTOR LIKE '%$busq_autor%'";
+
+$rec_total = mysqli_query($conn,$query_count)->fetch_object()->c;
+
+/*Query para aplicar LIMIT inicio, salto*/
+
+$query_by_autor = "SELECT * FROM POEMA WHERE AUTOR LIKE '%$busq_autor%' LIMIT $rec_inicio, $rec_x_pag ;";
+
+$result = mysqli_query($conn,$query_by_autor);
+
+/*Elemento paginacion HTML*/
+
+for($i=$pag;$i<=$pag;$i++){//Pasando por parametro la pagina
+    echo "<li class='page-item'><a class='page-link' href='index.php?autor=$busq_autor&pag=$i&buscar=#'>$i</a></li>";
+}
+
+
 ?>

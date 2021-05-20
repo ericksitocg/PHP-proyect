@@ -89,6 +89,23 @@ dinamicamente los elementos se usa PHP*/
     <div class='accordion' id='accordionExample'>
 
 <?php
+//Paginacion
+
+//-------------Pagination-------------
+$rec_x_pag = 100;
+
+if (isset($_GET["pag"])){
+    $pag = $_GET["pag"];
+}
+else{
+    $pag = 1;
+}
+
+$rec_inicio = ($pag - 1)*$rec_x_pag;
+
+?>
+
+<?php
     /*
     Seguridad ante inyeccion SQL
     Uso de mysqli_real_escape_string() para limpiar el parametro recibido
@@ -99,13 +116,17 @@ dinamicamente los elementos se usa PHP*/
         //$busq_autor = $_GET["autor"]; //VULNERABLE A INYECCION SQL
 
         if($busq_autor != ""){
+
+            $query_count = "SELECT COUNT(*) as 'c' FROM POEMA WHERE AUTOR LIKE '%$busq_autor%'";
+
+            $rec_total = mysqli_query($conn,$query_count)->fetch_object()->c;
    
-            $query_by_autor = "SELECT * FROM POEMA WHERE AUTOR LIKE '%$busq_autor%';";
+            $query_by_autor = "SELECT * FROM POEMA WHERE AUTOR LIKE '%$busq_autor%' LIMIT $rec_inicio, $rec_x_pag ;";
 
             $result = mysqli_query($conn,$query_by_autor);
 
             $id = 1;
-            if (mysqli_num_rows($result) > 0) {//Se recorren y crean los items para cada poema
+            if ($result && mysqli_num_rows($result) > 0) {//Se recorren y crean los items para cada poema
                 while($row = mysqli_fetch_assoc($result)) {
                     $id_poema = $row["ID"];  //Columnas de la tabla
                     $autor = $row["autor"];
@@ -129,6 +150,43 @@ dinamicamente los elementos se usa PHP*/
                     ";
                     $id+=1;
                 }
+
+                $num_pag = ceil($rec_total/$rec_x_pag);
+
+                $HTML_pagination_start =  "
+                <nav aria-label='Page navigation example'>
+                    <ul class='pagination justify-content-center'>";
+                        
+                echo $HTML_pagination_start;
+
+                //5 paginas antes de la actual
+
+                $HTML_left_pag_order = "";
+
+                $c= 0;
+                $pag_left = $pag - 1;
+                while($pag_left>0 && $c<5){
+                    $HTML_left_pag_order = "<li class='page-item'><a class='page-link' href='index.php?autor=$busq_autor&pag=$pag_left&buscar=#'>$pag_left</a></li>" .  $HTML_left_pag_order;
+                    $pag_left-=1;
+                    $c+=1;
+                }
+                echo $HTML_left_pag_order;
+
+                echo "<li class='page-item active'><a class='page-link' href='index.php?autor=$busq_autor&pag=$pag&buscar=#'>$pag</a></li>";
+
+                //5 paginas despues de la actual
+                $c= 0;
+                $pag_right = $pag + 1;
+                while($pag_right<=$num_pag && $c<5){
+                    echo "<li class='page-item'><a class='page-link' href='index.php?autor=$busq_autor&pag=$pag_right&buscar=#'>$pag_right</a></li>";
+                    $pag_right+=1;
+                    $c+=1;
+                }
+                $HTML_pagination_end =  "
+                    </ul>
+                </nav>";
+                echo $HTML_pagination_end;
+
             }
             else{
                 echo "
