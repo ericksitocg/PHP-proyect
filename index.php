@@ -312,7 +312,7 @@ else{
     $pag = 1;
 }
 
-$rec_inicio = ($pag - 1)*$rec_x_pag;
+$rec_inicio = ($pag - 1)*$rec_x_pag;//El primer registro dependiendo de la pagina
 
 /*Query para contar el total de registros*/
 
@@ -328,8 +328,10 @@ $result = mysqli_query($conn,$query_by_autor);
 
 /*Elemento paginacion HTML*/
 
-for($i=$pag;$i<=$pag;$i++){//Pasando por parametro la pagina
-    echo "<li class='page-item'><a class='page-link' href='index.php?autor=$busq_autor&pag=$i&buscar=#'>$i</a></li>";
+$num_pag = ceil($rec_total/$rec_x_pag);//Cuantas paginas dependiendo de los resultados
+
+for($i=0;$i<=$num_pag;$i++){//Pasando por parametro la pagina
+    echo "<li class='page-item'><a class='page-link' href='index.php?autor=$busq_autor&pag=$num_pag&buscar=#'>$num_pag</a></li>";
 }
 
 
